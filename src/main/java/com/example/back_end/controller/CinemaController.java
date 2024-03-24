@@ -3,7 +3,6 @@ package com.example.back_end.controller;
 import com.example.back_end.dto.CinemaDto;
 import com.example.back_end.entity.Cinema;
 import com.example.back_end.service.CinemaService;
-import com.example.back_end.service.SellerService;
 import com.example.back_end.util.StandardResponse;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,7 @@ public class CinemaController {
 
     //CINEMA
     //create
+    //*THEATER_OWNER
     @PostMapping(path = "/post-movie")
     public ResponseEntity<StandardResponse> postMovie(@RequestBody Cinema cinema){
         Cinema name= cinemaService.postMovie(cinema);
@@ -39,6 +39,7 @@ public class CinemaController {
         );
     }
     //update movie
+    //*THEATER_OWNER ROLE
     @PutMapping(path={"/update/{id}"})
 
     public ResponseEntity<StandardResponse> updateMovie(
@@ -53,32 +54,12 @@ public class CinemaController {
     }
 
     //delete
+    //*THEATER_OWNER ROLE
     @DeleteMapping("/delete-movie/{id}")
     public ResponseEntity<String> deleteMovie(@PathVariable("id") long id) {
         String message = cinemaService.deleteMovie(id);
         return ResponseEntity.ok(message);
     }
-    //get all movies
-    @GetMapping("/get-all-movies")
-    public ResponseEntity<List<Cinema>> getAllMovies() {
-        List<Cinema> movies = cinemaService.getAllMovies();
-        if (movies.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(movies);
-        }
-    }
 
-    //get by name
-    @GetMapping("/search-by-name/{name}")
-    public ResponseEntity<List<Cinema>> getByName(@PathVariable String name) {
-        List<Cinema> movies = cinemaService.searchMoviesByName(name);
-
-        if (movies.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(movies);
-        }
-    }
 
 }

@@ -11,24 +11,14 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Booking {
+public class CinemaBooking {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "cinema_id")
-    private Cinema cinema;
-
-    private String bookingDate;
-    private String bookingTime;
-    private int numberOfSeatsBooked;
-
-    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
-    private Payment payment;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long bookingId;
+    private long categoryId;
+    private long userId;
+    private String date;
+    private String time;
+    private int noOfSeats;
 
 }

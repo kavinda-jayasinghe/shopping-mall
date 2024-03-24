@@ -8,12 +8,12 @@ import lombok.*;
 @Data
 @Getter
 @Setter
-public class BookingCinemaDto {
+public class CinemaBookingDto {
 
-    private String userId;
-    private String movieId;
-    private String bookedDate;
-    private String bookedTime;
-    private double price;
-    private String bookedSeats;
+    private Long bookingId;
+    private long categoryId;
+    private long userId;
+    private String date;
+    private String time;
+    private int noOfSeats;
 }
